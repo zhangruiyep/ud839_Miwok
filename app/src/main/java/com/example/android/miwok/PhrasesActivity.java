@@ -13,11 +13,11 @@ public class PhrasesActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.word_list);
         ArrayList<Word> words = new ArrayList<Word>();
-        words.add(new Word("Where are you going?", "minto wuksus", R.drawable.redball));
-        words.add(new Word("What is your name? ", "tinnə oyaase'nə ", R.drawable.redball));
-        words.add(new Word("My name is... ", "oyaaset... ", R.drawable.redball));
-        words.add(new Word("How are you feeling? ", "michəksəs? ", R.drawable.redball));
-        words.add(new Word("I’m feeling good. ", "kuchi achit ", R.drawable.redball));
+        words.add(new Word("Where are you going?", "minto wuksus"));
+        words.add(new Word("What is your name? ", "tinnə oyaase'nə "));
+        words.add(new Word("My name is... ", "oyaaset... "));
+        words.add(new Word("How are you feeling? ", "michəksəs? "));
+        words.add(new Word("I’m feeling good. ", "kuchi achit "));
 
         WordAdapter itemsAdapter = new WordAdapter(this, words);
         ListView listView = (ListView) findViewById(R.id.listView);

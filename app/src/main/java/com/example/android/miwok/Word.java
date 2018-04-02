@@ -14,6 +14,11 @@ public class Word {
         this.miwok = miwok;
         this.iconResId = iconResId;
     }
+    public Word(String english, String miwok){
+        this.english = english;
+        this.miwok = miwok;
+        this.iconResId = -1;
+    }
 
     public String getEnglish() {
         return english;

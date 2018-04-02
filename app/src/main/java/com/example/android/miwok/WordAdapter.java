@@ -71,7 +71,10 @@ public class WordAdapter extends ArrayAdapter<Word> {
         // so that it can be shown in the ListView
 
         ImageView iconImageView = (ImageView) listItemView.findViewById(R.id.icon_image_view);
-        iconImageView.setImageResource(curWord.getIconResId());
+        int iconResId = curWord.getIconResId();
+        if (iconResId != -1) {
+            iconImageView.setImageResource(iconResId);
+        }
         return listItemView;
     }
 }
