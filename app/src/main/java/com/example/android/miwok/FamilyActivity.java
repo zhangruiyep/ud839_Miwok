@@ -14,11 +14,11 @@ public class FamilyActivity extends AppCompatActivity {
         setContentView(R.layout.word_list);
 
         ArrayList<Word> words = new ArrayList<Word>();
-        words.add(new Word("father", "əpə"));
-        words.add(new Word("mother", "əṭa"));
-        words.add(new Word("son", "angsi"));
-        words.add(new Word("daughter", "tune"));
-        words.add(new Word("older brother", "taachi"));
+        words.add(new Word("father", "əpə", R.drawable.redball));
+        words.add(new Word("mother", "əṭa", R.drawable.redball));
+        words.add(new Word("son", "angsi", R.drawable.redball));
+        words.add(new Word("daughter", "tune", R.drawable.redball));
+        words.add(new Word("older brother", "taachi", R.drawable.redball));
 
         WordAdapter itemsAdapter = new WordAdapter(this, words);
         ListView listView = (ListView) findViewById(R.id.listView);

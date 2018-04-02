@@ -69,6 +69,9 @@ public class WordAdapter extends ArrayAdapter<Word> {
         iconView.setImageResource(currentAndroidFlavor.getImageResourceId());*/
         // Return the whole list item layout (containing 2 TextViews and an ImageView)
         // so that it can be shown in the ListView
+
+        ImageView iconImageView = (ImageView) listItemView.findViewById(R.id.icon_image_view);
+        iconImageView.setImageResource(curWord.getIconResId());
         return listItemView;
     }
 }

@@ -18,11 +18,11 @@ public class NumbersActivity extends AppCompatActivity {
         ArrayList<Word> words = new ArrayList<Word>();
 
         //{"One", "Two", "Three", "Four", "Five","Six", "Seven", "Eight", "Nine", "Ten"}
-        words.add(new Word("one", "lutti"));
-        words.add(new Word("two", "otiiko"));
-        words.add(new Word("three", "tolookoso"));
-        words.add(new Word("four", "oyyisa"));
-        words.add(new Word("five", "massokka"));
+        words.add(new Word("one", "lutti", R.drawable.redball));
+        words.add(new Word("two", "otiiko", R.drawable.redball));
+        words.add(new Word("three", "tolookoso", R.drawable.redball));
+        words.add(new Word("four", "oyyisa", R.drawable.redball));
+        words.add(new Word("five", "massokka", R.drawable.redball));
         /*
         words.add("two");
         words.add("three");
