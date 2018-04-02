@@ -13,11 +13,11 @@ public class ColorsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.word_list);
         ArrayList<Word> words = new ArrayList<Word>();
-        words.add(new Word("red", "weṭeṭṭi ", R.drawable.redball));
-        words.add(new Word("green", "chokokki ", R.drawable.redball));
-        words.add(new Word("brown", "ṭakaakki ", R.drawable.redball));
-        words.add(new Word("gray", "ṭopoppi ", R.drawable.redball));
-        words.add(new Word("black", "kululli ", R.drawable.redball));
+        words.add(new Word("red", "weṭeṭṭi ", R.mipmap.ic_launcher));
+        words.add(new Word("green", "chokokki ", R.mipmap.ic_launcher));
+        words.add(new Word("brown", "ṭakaakki ", R.mipmap.ic_launcher));
+        words.add(new Word("gray", "ṭopoppi ", R.mipmap.ic_launcher));
+        words.add(new Word("black", "kululli ", R.mipmap.ic_launcher));
 
         WordAdapter itemsAdapter = new WordAdapter(this, words);
         ListView listView = (ListView) findViewById(R.id.listView);
