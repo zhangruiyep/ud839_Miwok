@@ -18,11 +18,11 @@ public class NumbersActivity extends AppCompatActivity {
         ArrayList<Word> words = new ArrayList<Word>();
 
         //{"One", "Two", "Three", "Four", "Five","Six", "Seven", "Eight", "Nine", "Ten"}
-        words.add(new Word("one", "lutti", R.drawable.redball));
-        words.add(new Word("two", "otiiko", R.drawable.redball));
-        words.add(new Word("three", "tolookoso", R.drawable.redball));
-        words.add(new Word("four", "oyyisa", R.drawable.redball));
-        words.add(new Word("five", "massokka", R.drawable.redball));
+        words.add(new Word("one", "lutti", R.drawable.number_one));
+        words.add(new Word("two", "otiiko", R.drawable.number_two));
+        words.add(new Word("three", "tolookoso", R.drawable.number_three));
+        words.add(new Word("four", "oyyisa", R.drawable.number_four));
+        words.add(new Word("five", "massokka", R.drawable.number_five));
         /*
         words.add("two");
         words.add("three");
@@ -50,7 +50,7 @@ public class NumbersActivity extends AppCompatActivity {
         }
         */
 
-        WordAdapter itemsAdapter = new WordAdapter(this, words);
+        WordAdapter itemsAdapter = new WordAdapter(this, words, R.color.category_numbers);
         ListView listView = (ListView) findViewById(R.id.listView);
         //GridView listView = (GridView) findViewById(R.id.listView);
         listView.setAdapter(itemsAdapter);

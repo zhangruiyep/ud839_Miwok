@@ -19,7 +19,7 @@ public class PhrasesActivity extends AppCompatActivity {
         words.add(new Word("How are you feeling? ", "michəksəs? "));
         words.add(new Word("I’m feeling good. ", "kuchi achit "));
 
-        WordAdapter itemsAdapter = new WordAdapter(this, words);
+        WordAdapter itemsAdapter = new WordAdapter(this, words, R.color.category_phrases);
         ListView listView = (ListView) findViewById(R.id.listView);
         //GridView listView = (GridView) findViewById(R.id.listView);
         listView.setAdapter(itemsAdapter);

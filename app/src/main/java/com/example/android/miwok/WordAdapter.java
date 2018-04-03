@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -20,7 +21,9 @@ import java.util.List;
  */
 
 public class WordAdapter extends ArrayAdapter<Word> {
-    public WordAdapter(Activity context, ArrayList<Word> words) {
+    private int colorID;
+
+    public WordAdapter(Activity context, ArrayList<Word> words, int colorID) {
 
         // Here, we initialize the ArrayAdapter's internal storage for the context and the list.
 
@@ -30,6 +33,8 @@ public class WordAdapter extends ArrayAdapter<Word> {
 
         // going to use this second argument, so it can be any value. Here, we used 0.
         super(context, 0, words);
+        this.colorID = colorID;
+        Log.i("WordAdapter", "colorID=" + colorID);
     }
 /*
     public WordAdapter(@NonNull Context context, int resource, @NonNull List<Word> objects) {
@@ -54,14 +59,16 @@ public class WordAdapter extends ArrayAdapter<Word> {
         // Get the version name from the current AndroidFlavor object and
         // set this text on the name TextView
         engTextView.setText(curWord.getEnglish());
-        Log.i("WordAdapter", "english_text_view");
+        //engTextView.setBackgroundColor(this.colorID);
+        //Log.i("WordAdapter", "english_text_view");
 
         // Find the TextView in the list_item.xml layout with the ID version_number
         TextView miwokTextView = (TextView) listItemView.findViewById(R.id.miwok_text_view);
         // Get the version number from the current AndroidFlavor object and
         // set this text on the number TextView
         miwokTextView.setText(curWord.getMiwok());
-        Log.i("WordAdapter", "miwok_text_view");
+        //miwokTextView.setBackgroundColor(this.colorID);
+        //Log.i("WordAdapter", "miwok_text_view");
 /*        // Find the ImageView in the list_item.xml layout with the ID list_item_icon
         ImageView iconView = (ImageView) listItemView.findViewById(R.id.list_item_icon);
         // Get the image resource ID from the current AndroidFlavor object and
@@ -71,10 +78,14 @@ public class WordAdapter extends ArrayAdapter<Word> {
         // so that it can be shown in the ListView
 
         ImageView iconImageView = (ImageView) listItemView.findViewById(R.id.icon_image_view);
-        int iconResId = curWord.getIconResId();
-        if (iconResId != -1) {
-            iconImageView.setImageResource(iconResId);
+        if (curWord.hasImage()) {
+            iconImageView.setImageResource(curWord.getIconResId());
+        } else {
+            iconImageView.setVisibility(View.GONE);
         }
+        LinearLayout txtLayout = (LinearLayout) listItemView.findViewById(R.id.text_linear_layout);
+        txtLayout.setBackgroundResource(this.colorID);
+
         return listItemView;
     }
 }

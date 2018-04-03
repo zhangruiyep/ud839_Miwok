@@ -9,12 +9,13 @@ public class Word {
     private String miwok;
     private int iconResId;
 
-    public Word(String english, String miwok, int iconResId){
+    public Word(String english, String miwok, int iconResId) {
         this.english = english;
         this.miwok = miwok;
         this.iconResId = iconResId;
     }
-    public Word(String english, String miwok){
+
+    public Word(String english, String miwok) {
         this.english = english;
         this.miwok = miwok;
         this.iconResId = -1;
@@ -30,5 +31,9 @@ public class Word {
 
     public int getIconResId() {
         return iconResId;
+    }
+
+    public boolean hasImage() {
+        return (this.iconResId != -1);
     }
 }
