@@ -11,8 +11,10 @@ public class NumbersActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.word_list);
+
 
         //ArrayList<String> words = new ArrayList<String>();
         ArrayList<Word> words = new ArrayList<Word>();
@@ -54,6 +56,8 @@ public class NumbersActivity extends AppCompatActivity {
         ListView listView = (ListView) findViewById(R.id.listView);
         //GridView listView = (GridView) findViewById(R.id.listView);
         listView.setAdapter(itemsAdapter);
+
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
     }
 }
