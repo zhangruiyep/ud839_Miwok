@@ -7,10 +7,10 @@
     tools:context="com.example.android.miwok.NumbersActivity">
 
     <ListView
+        android:id="@+id/listView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:id="@+id/listView">
+        android:orientation="vertical">
 
     </ListView>
 

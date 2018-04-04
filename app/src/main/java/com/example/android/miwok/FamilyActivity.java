@@ -6,25 +6,22 @@ import android.widget.ListView;
 
 import java.util.ArrayList;
 
-public class FamilyActivity extends AppCompatActivity {
+public class FamilyActivity extends AppCompatActivity
+ implements FamilyFragment.OnFragmentInteractionListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        setContentView(R.layout.word_list);
+        // Inflate the layout for this fragment
+        setContentView(R.layout.activity_category);
+        getSupportFragmentManager().beginTransaction()
+           .replace(R.id.container, new FamilyFragment())
+           .commit();
 
-        ArrayList<Word> words = new ArrayList<Word>();
-        words.add(new Word("father", "əpə", R.drawable.family_father));
-        words.add(new Word("mother", "əṭa", R.drawable.family_mother));
-        words.add(new Word("son", "angsi", R.drawable.family_son));
-        words.add(new Word("daughter", "tune", R.drawable.family_daughter));
-        words.add(new Word("older brother", "taachi", R.drawable.family_older_brother));
-
-        WordAdapter itemsAdapter = new WordAdapter(this, words, R.color.category_family);
-        ListView listView = (ListView) findViewById(R.id.listView);
-        //GridView listView = (GridView) findViewById(R.id.listView);
-        listView.setAdapter(itemsAdapter);
-
+    }
+    @Override
+    public void onFragmentInteraction(android.net.Uri uri){
+        //you can leave it empty
     }
 }

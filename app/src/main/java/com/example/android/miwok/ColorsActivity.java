@@ -6,25 +6,21 @@ import android.widget.ListView;
 
 import java.util.ArrayList;
 
-public class ColorsActivity extends AppCompatActivity {
+public class ColorsActivity extends AppCompatActivity
+    implements ColorsFragment.OnFragmentInteractionListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        setContentView(R.layout.word_list);
-        ArrayList<Word> words = new ArrayList<Word>();
-        words.add(new Word("red", "weṭeṭṭi ", R.drawable.color_red));
-        words.add(new Word("green", "chokokki ", R.drawable.color_green));
-        words.add(new Word("brown", "ṭakaakki ", R.drawable.color_brown));
-        words.add(new Word("gray", "ṭopoppi ", R.drawable.color_gray));
-        words.add(new Word("black", "kululli ", R.drawable.color_black));
-
-        WordAdapter itemsAdapter = new WordAdapter(this, words, R.color.category_colors);
-        ListView listView = (ListView) findViewById(R.id.listView);
-        //GridView listView = (GridView) findViewById(R.id.listView);
-        listView.setAdapter(itemsAdapter);
-
-
+        // Inflate the layout for this fragment
+        setContentView(R.layout.activity_category);
+        getSupportFragmentManager().beginTransaction()
+           .replace(R.id.container, new ColorsFragment())
+           .commit();
+    }
+    @Override
+    public void onFragmentInteraction(android.net.Uri uri){
+        //you can leave it empty
     }
 }
