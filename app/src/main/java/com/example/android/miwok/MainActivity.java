@@ -18,11 +18,16 @@ package com.example.android.miwok;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.TextView;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity
+        implements NumbersFragment.OnFragmentInteractionListener,
+        ColorsFragment.OnFragmentInteractionListener,
+        FamilyFragment.OnFragmentInteractionListener,
+        PhrasesFragment.OnFragmentInteractionListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
         // Set the content of the activity to use the activity_main.xml layout file
         setContentView(R.layout.activity_main);
 
-        TextView numbersTextView = (TextView) findViewById(R.id.numbers);
+/*        TextView numbersTextView = (TextView) findViewById(R.id.numbers);
 
         numbersTextView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -69,7 +74,20 @@ public class MainActivity extends AppCompatActivity {
                 Intent phrasesIntent = new Intent(MainActivity.this, PhrasesActivity.class);
                 startActivity(phrasesIntent);
             }
-        });
+        });*/
+        // Find the view pager that will allow the user to swipe between fragments
+        ViewPager viewPager = (ViewPager) findViewById(R.id.viewpager);
 
+        // Create an adapter that knows which fragment should be shown on each page
+        CategoryAdapter adapter = new CategoryAdapter(getSupportFragmentManager());
+
+        // Set the adapter onto the view pager
+        viewPager.setAdapter(adapter);
+
+    }
+
+    @Override
+    public void onFragmentInteraction(android.net.Uri uri){
+        //you can leave it empty
     }
 }
