@@ -54,4 +54,14 @@ public class Word {
     public boolean hasAudio() {
         return (this.audioResId != -1);
     }
+
+    @Override
+    public String toString() {
+        return "Word{" +
+                "english='" + english + '\'' +
+                ", miwok='" + miwok + '\'' +
+                ", iconResId=" + iconResId +
+                ", audioResId=" + audioResId +
+                '}';
+    }
 }
