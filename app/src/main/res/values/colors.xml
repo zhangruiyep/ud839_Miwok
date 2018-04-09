@@ -38,4 +38,6 @@
     <color name="category_font_color">#FFFFFF</color>
 
     <color name="word_font_color">#FFFFFF</color>
+
+    <color name="category_inactive_font_color">#ABA19E</color>
 </resources>

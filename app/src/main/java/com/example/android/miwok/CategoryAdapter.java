@@ -5,6 +5,9 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
 public class CategoryAdapter extends FragmentPagerAdapter {
+
+    private String tabTitles[] = new String[] { "Numbers", "Colors", "Family", "Phrases" };
+
     public CategoryAdapter(FragmentManager fm){
         super(fm);
     }
@@ -27,5 +30,11 @@ public class CategoryAdapter extends FragmentPagerAdapter {
     @Override
     public int getCount() {
         return 4;
+    }
+
+    @Override
+    public CharSequence getPageTitle(int position) {
+        // Generate title based on item position
+        return tabTitles[position];
     }
 }

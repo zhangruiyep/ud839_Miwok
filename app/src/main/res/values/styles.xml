@@ -31,4 +31,11 @@
         <item name="android:textSize">18sp</item>
         <item name="android:textAppearance">?android:textAppearanceMedium</item>
     </style>
+
+    <style name="CategoryTabStyle">
+        <item name="android:background">@color/primary_color</item>
+        <item name="tabIndicatorColor">@color/category_font_color</item>
+        <item name="tabSelectedTextColor">@color/category_font_color</item>
+        <item name="tabTextColor">@color/category_inactive_font_color</item>
+    </style>
 </resources>
