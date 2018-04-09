@@ -26,6 +26,7 @@ import java.util.List;
 
 public class WordAdapter extends ArrayAdapter<Word> {
     private int colorID;
+    private int audioID;
 
     public WordAdapter(Activity context, ArrayList<Word> words, int colorID) {
 
@@ -38,6 +39,7 @@ public class WordAdapter extends ArrayAdapter<Word> {
         // going to use this second argument, so it can be any value. Here, we used 0.
         super(context, 0, words);
         this.colorID = colorID;
+        this.audioID = audioID;
         Log.i("WordAdapter", "colorID=" + colorID);
     }
 /*
@@ -57,7 +59,7 @@ public class WordAdapter extends ArrayAdapter<Word> {
                     R.layout.list_item, parent, false);
         }
         // Get the {@link AndroidFlavor} object located at this position in the list
-        Word curWord = getItem(position);
+        final Word curWord = getItem(position);
         // Find the TextView in the list_item.xml layout with the ID version_name
         TextView engTextView = (TextView) listItemView.findViewById(R.id.english_text_view);
         // Get the version name from the current AndroidFlavor object and
@@ -90,20 +92,15 @@ public class WordAdapter extends ArrayAdapter<Word> {
         LinearLayout txtLayout = (LinearLayout) listItemView.findViewById(R.id.text_linear_layout);
         txtLayout.setBackgroundResource(this.colorID);
 
-        txtLayout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                MediaPlayer testAudio = MediaPlayer.create(getContext(), R.raw.complete);
-
-/*                try {
-                    testAudio.prepare();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }*/
-
-                testAudio.start();
-            }
-        });
+/*        if (curWord.hasAudio()) {
+            txtLayout.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    MediaPlayer testAudio = MediaPlayer.create(getContext(), curWord.getAudioResId());
+                    testAudio.start();
+                }
+            });
+        }*/
 
         return listItemView;
     }
