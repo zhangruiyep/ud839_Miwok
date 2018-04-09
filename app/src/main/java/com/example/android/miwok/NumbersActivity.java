@@ -1,5 +1,9 @@
 package com.example.android.miwok;
 
+import android.content.Context;
+import android.media.AudioAttributes;
+import android.media.AudioFocusRequest;
+import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -7,16 +11,41 @@ import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
 
 public class NumbersActivity extends AppCompatActivity {
+    private MediaPlayer mMediaPlayer;
+    private MediaPlayer.OnCompletionListener mOnCompListener = new MediaPlayer.OnCompletionListener() {
+        @Override
+        public void onCompletion(MediaPlayer mediaPlayer) {
+            Toast.makeText(NumbersActivity.this, "I'm done.", Toast.LENGTH_SHORT).show();
+            am.abandonAudioFocus(afChangeListener);
+            releaseMedia();
+        }
+    };
+
+    private AudioManager am;
+    private AudioManager.OnAudioFocusChangeListener afChangeListener = new AudioManager.OnAudioFocusChangeListener() {
+        @Override
+        public void onAudioFocusChange(int i) {
+            Log.i("NumbersActivity", "i="+i);
+            switch(i)
+            {
+
+            }
+        }
+    };
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
+        mMediaPlayer = null;
+        am = (AudioManager) NumbersActivity.this.getSystemService(Context.AUDIO_SERVICE);
         setContentView(R.layout.word_list);
 
         //ArrayList<String> words = new ArrayList<String>();
@@ -49,10 +78,26 @@ public class NumbersActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Word curWord = itemsAdapter.getItem(i);
-                Log.i("NumbersActivity","curWord:"+curWord);
+                Log.i("NumbersActivity", "curWord:" + curWord);
                 if (curWord.hasAudio()) {
-                    MediaPlayer testAudio = MediaPlayer.create(NumbersActivity.this, curWord.getAudioResId());
-                    testAudio.start();
+                    releaseMedia();
+
+                    mMediaPlayer = MediaPlayer.create(NumbersActivity.this, curWord.getAudioResId());
+
+                    // Request audio focus for playback
+                    int result = am.requestAudioFocus(afChangeListener,
+                            // Use the music stream.
+                            AudioManager.USE_DEFAULT_STREAM_TYPE,
+                            // Request permanent focus.
+                            AudioManager.AUDIOFOCUS_GAIN);
+
+                    if (result == AudioManager.AUDIOFOCUS_REQUEST_GRANTED) {
+                        // Start playback
+                        mMediaPlayer.start();
+
+                        mMediaPlayer.setOnCompletionListener(mOnCompListener);
+                    }
+
                 }
             }
         });
@@ -60,4 +105,18 @@ public class NumbersActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
     }
+
+    private void releaseMedia() {
+        if (mMediaPlayer != null) {
+            mMediaPlayer.release();
+            mMediaPlayer = null;
+        }
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        releaseMedia();
+    }
+
 }
