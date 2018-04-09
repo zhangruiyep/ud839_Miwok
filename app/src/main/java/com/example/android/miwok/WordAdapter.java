@@ -2,6 +2,9 @@ package com.example.android.miwok;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
+import android.content.res.AssetFileDescriptor;
+import android.media.MediaPlayer;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.util.Log;
@@ -13,6 +16,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -85,6 +89,21 @@ public class WordAdapter extends ArrayAdapter<Word> {
         }
         LinearLayout txtLayout = (LinearLayout) listItemView.findViewById(R.id.text_linear_layout);
         txtLayout.setBackgroundResource(this.colorID);
+
+        txtLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                MediaPlayer testAudio = MediaPlayer.create(getContext(), R.raw.complete);
+
+/*                try {
+                    testAudio.prepare();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }*/
+
+                testAudio.start();
+            }
+        });
 
         return listItemView;
     }

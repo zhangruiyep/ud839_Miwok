@@ -15,7 +15,6 @@ public class NumbersActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.word_list);
 
-
         //ArrayList<String> words = new ArrayList<String>();
         ArrayList<Word> words = new ArrayList<Word>();
 
@@ -35,21 +34,6 @@ public class NumbersActivity extends AppCompatActivity {
         words.add("eight");
         words.add("nine");
         words.add("ten");
-        */
-        int i = 0;
-        /*
-        for (i = 0; i < words.size(); i++)
-        {
-            Log.v("NumbersActivity", words.get(i));
-        }
-        */
-        /*LinearLayout numberLinearLayout = (LinearLayout) findViewById(R.id.rootView);
-        for (i = 0; i < words.size(); i++)
-        {
-            TextView nText = new TextView(this);
-            nText.setText(words.get(i));
-            numberLinearLayout.addView(nText);
-        }
         */
 
         WordAdapter itemsAdapter = new WordAdapter(this, words, R.color.category_numbers);
