@@ -31,10 +31,22 @@ public class NumbersActivity extends AppCompatActivity {
     private AudioManager.OnAudioFocusChangeListener afChangeListener = new AudioManager.OnAudioFocusChangeListener() {
         @Override
         public void onAudioFocusChange(int i) {
-            Log.i("NumbersActivity", "i="+i);
-            switch(i)
-            {
-
+            Log.i("NumbersActivity", "onAudioFocusChange:" + i);
+            switch (i) {
+                case AudioManager.AUDIOFOCUS_GAIN:
+                    mMediaPlayer.start();
+                    break;
+                case AudioManager.AUDIOFOCUS_LOSS:
+                    mMediaPlayer.stop();
+                    releaseMedia();
+                    break;
+                case AudioManager.AUDIOFOCUS_LOSS_TRANSIENT:
+                case AudioManager.AUDIOFOCUS_LOSS_TRANSIENT_CAN_DUCK:
+                    mMediaPlayer.pause();
+                    mMediaPlayer.seekTo(0);
+                    break;
+                default:
+                    break;
             }
         }
     };
@@ -80,6 +92,7 @@ public class NumbersActivity extends AppCompatActivity {
                 Word curWord = itemsAdapter.getItem(i);
                 Log.i("NumbersActivity", "curWord:" + curWord);
                 if (curWord.hasAudio()) {
+                    Log.i("NumbersActivity", "has audio");
                     releaseMedia();
 
                     mMediaPlayer = MediaPlayer.create(NumbersActivity.this, curWord.getAudioResId());
@@ -87,17 +100,22 @@ public class NumbersActivity extends AppCompatActivity {
                     // Request audio focus for playback
                     int result = am.requestAudioFocus(afChangeListener,
                             // Use the music stream.
-                            AudioManager.USE_DEFAULT_STREAM_TYPE,
+                            AudioManager.STREAM_MUSIC,
                             // Request permanent focus.
-                            AudioManager.AUDIOFOCUS_GAIN);
+                            AudioManager.AUDIOFOCUS_GAIN_TRANSIENT);
 
                     if (result == AudioManager.AUDIOFOCUS_REQUEST_GRANTED) {
+                        Log.i("NumbersActivity", "AUDIOFOCUS_REQUEST_GRANTED");
                         // Start playback
                         mMediaPlayer.start();
 
                         mMediaPlayer.setOnCompletionListener(mOnCompListener);
+                    } else {
+                        Log.i("NumbersActivity", "focus gain result:" + result);
                     }
 
+                } else {
+                    Log.i("NumbersActivity", "no audio");
                 }
             }
         });
