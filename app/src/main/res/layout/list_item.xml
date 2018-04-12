@@ -15,36 +15,49 @@
             android:layout_height="match_parent"
             android:gravity="center" />
 
-        <LinearLayout
+        <RelativeLayout
             android:id="@+id/text_linear_layout"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:paddingStart="16dp"
-            android:paddingEnd="16dp"
             android:layout_weight="1"
-            android:background="@color/category_numbers"
-            android:orientation="vertical">
+            android:orientation="horizontal"
+            android:paddingEnd="16dp"
+            android:paddingStart="16dp">
 
-            <TextView
-                android:id="@+id/miwok_text_view"
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="bottom"
-                android:layout_weight="1"
-                android:textColor="@color/word_font_color"
-                android:textSize="18sp"
-                android:textStyle="bold" />
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:layout_weight="1">
 
-            <TextView
-                android:id="@+id/english_text_view"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="top"
-                android:layout_weight="1"
-                android:textColor="@color/word_font_color"
-                android:textSize="18sp" />
+                <TextView
+                    android:id="@+id/miwok_text_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="bottom"
+                    android:textColor="@color/word_font_color"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
 
-        </LinearLayout>
+                <TextView
+                    android:id="@+id/english_text_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="top"
+                    android:textColor="@color/word_font_color"
+                    android:textSize="18sp" />
+            </LinearLayout>
+
+            <ImageView
+                android:id="@+id/play_image_view"
+                android:layout_width="24dp"
+                android:layout_height="match_parent"
+                android:layout_alignParentRight="true"
+                android:src="@drawable/ic_play_arrow_white_36dp" />
+        </RelativeLayout>
     </LinearLayout>
+
 
 </android.support.constraint.ConstraintLayout>
